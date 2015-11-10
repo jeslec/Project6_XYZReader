@@ -9,4 +9,7 @@
 
     <string name="up">Up</string>
 
+    <!-- Main activity -->
+    <string name="refresh_fab_snackbar_msg">Updating news items...</string>
+
 </resources>
