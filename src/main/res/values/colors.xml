@@ -16,9 +16,8 @@
 -->
 
 <resources>
-    <color name="photo_placeholder">#ccc</color>
-    <color name="theme_accent">#04561A</color>
-    <color name="ltgray">#ffe0e0e0</color>
+    <color name="photo_placeholder">#00ff00</color>
+    <color name="detail_text_color">#ff000000</color>
 
     <!-- Our theme's color palette -->
     <color name="primary">#03A9F4</color>
