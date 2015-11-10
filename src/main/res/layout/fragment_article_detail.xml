@@ -22,9 +22,10 @@
                 <!--suppress AndroidLintContentDescription -->
                 <ImageView
                     android:id="@+id/photo"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:background="#ff0000"/>
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#ff0000"
+                    android:scaleType="centerCrop"/>
 
                 <View
                     android:layout_width="match_parent"
@@ -93,16 +94,17 @@
         </FrameLayout>
     </com.example.xyzreader.ui.ObservableScrollView>
 
-    <ImageButton android:id="@+id/share_fab"
+    <!-- As per Google Design Specs, floating action button circle size should be: 56 x 56dp -->
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/share_fab"
         android:stateListAnimator="@anim/fab_state_list_anim"
-        android:background="@drawable/add_fab_background"
         android:layout_gravity="bottom|end"
-        android:layout_marginRight="@dimen/fab_margin"
-        android:layout_marginBottom="@dimen/fab_margin"
+        android:layout_margin="@dimen/fab_margin"
         android:layout_width="56dp"
         android:layout_height="56dp"
         android:src="@drawable/ic_share"
         android:elevation="@dimen/fab_elevation"
+        app:pressedTranslationZ="@dimen/fab_press_translation_z"
         android:contentDescription="@string/action_share" />
 
 </com.example.xyzreader.ui.DrawInsetsFrameLayout>

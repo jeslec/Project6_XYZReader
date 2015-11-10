@@ -4,8 +4,14 @@
     <dimen name="detail_body_text_size">22sp</dimen>
     <item name="detail_body_line_spacing_multiplier" format="float" type="fraction">1.25</item>
 
-    <dimen name="fab_elevation">2dp</dimen>
+    <!-- As per Google design guidelines, resting elevation of FAB should be 6 dp -->
+    <dimen name="fab_elevation">6dp</dimen>
     <dimen name="fab_press_translation_z">6dp</dimen>
-    <dimen name="fab_margin">24dp</dimen>
+
+    <!-- The floating action button should be placed 16dp minimum
+    from the edge on mobile and 24dp minimum on tablet/desktop
+    http://www.google.com/design/spec/components/buttons-floating-action-button.html#buttons-floating-action-button-floating-action-button
+    -->
+    <dimen name="fab_margin">16dp</dimen>
 
 </resources>
