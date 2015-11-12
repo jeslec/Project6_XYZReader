@@ -78,6 +78,7 @@ public class ArticleDetailActivity extends ActionBarActivity
 
         mUpButtonContainer = findViewById(R.id.up_container);
 
+        // Removed: jessy 2015-11-11
         mUpButton = findViewById(R.id.action_up);
         mUpButton.setOnClickListener(new View.OnClickListener() {
             @Override

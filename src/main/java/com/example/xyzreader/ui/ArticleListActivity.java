@@ -122,6 +122,8 @@ public class ArticleListActivity extends AppCompatActivity implements
         StaggeredGridLayoutManager sglm =
                 new StaggeredGridLayoutManager(columnCount, StaggeredGridLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(sglm);
+        /*GridLayoutManager lm = new GridLayoutManager(this, 1, GridLayoutManager.VERTICAL, false);
+        mRecyclerView.setLayoutManager(lm);*/
     }
 
     @Override

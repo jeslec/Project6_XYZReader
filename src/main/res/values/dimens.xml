@@ -1,7 +1,8 @@
 <resources>
     <!-- detail -->
     <dimen name="detail_title_text_size">32sp</dimen>
-    <dimen name="detail_body_text_size">22sp</dimen>
+    <!-- Text should be sized to get 45-75 chars per line -->
+    <dimen name="detail_body_text_size">12sp</dimen>
     <item name="detail_body_line_spacing_multiplier" format="float" type="fraction">1.25</item>
 
     <!-- As per Google design guidelines, resting elevation of FAB should be 6 dp -->
@@ -13,5 +14,26 @@
     http://www.google.com/design/spec/components/buttons-floating-action-button.html#buttons-floating-action-button-floating-action-button
     -->
     <dimen name="fab_margin">16dp</dimen>
+
+    <!-- Values as per Google Material Design -->
+
+    <!-- The standard elevation for an app bar or toolbar is 4 dp -->
+    <dimen name="toolbar_elevation">4dp</dimen>
+
+    <!-- Left and right margins are 16 dp -->
+    <!-- https://www.google.com/design/spec/layout/metrics-keylines.html#metrics-keylines-keylines-spacing -->
+    <dimen name="margin_left_right">16dp</dimen>
+
+    <!-- Values for a card based on Material Design -->
+    <!-- https://www.google.com/design/spec/components/cards.html#cards-content-blocks -->
+    <dimen name="card_primary_title_top_padding">24dp</dimen>
+    <dimen name="card_primary_title_bottom_padding">24dp</dimen>
+    <dimen name="card_primary_title_textsize">24sp</dimen>
+    <dimen name="card_subtitle_textsize">14sp</dimen>
+    <dimen name="card_resting_elevation">4dp</dimen>
+    <dimen name="card_raised_elevation">8dp</dimen>
+    <!-- Space between 2 cards must be 8 dp -->
+    <dimen name="card_bottom_margin">4dp</dimen>
+    <dimen name="card_top_margin">4dp</dimen>
 
 </resources>
