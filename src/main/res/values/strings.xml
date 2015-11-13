@@ -11,5 +11,6 @@
 
     <!-- Main activity -->
     <string name="refresh_fab_snackbar_msg">Updating news items...</string>
+    <string name="transition_photo">transition_photo</string>
 
 </resources>

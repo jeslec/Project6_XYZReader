@@ -123,6 +123,13 @@ public class ArticleDetailFragment extends Fragment implements
         });
 
         mPhotoView = (ImageView) mRootView.findViewById(R.id.photo);
+
+        // Test: jessy (added 2015-11-12)
+        // Set a unique transition name
+        String articleIdString = String.valueOf(mItemId);
+        mPhotoView.setTransitionName(String.valueOf(mItemId));
+        //--
+
         mPhotoContainerView = mRootView.findViewById(R.id.photo_container);
 
         mStatusBarColorDrawable = new ColorDrawable(0);

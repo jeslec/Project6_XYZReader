@@ -7,9 +7,11 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.Loader;
 import android.database.Cursor;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
@@ -19,6 +21,7 @@ import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.TextView;
 
 import com.example.xyzreader.R;
@@ -42,6 +45,15 @@ public class ArticleListActivity extends AppCompatActivity implements
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        // This flag is required to get shared element transitions
+        // Must be called BEFORE super.onCreate() as mentioned here:
+        // http://stackoverflow.com/questions/23579573/calling-requestwindowfeature-after-oncreate
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            requestWindowFeature(Window.FEATURE_ACTIVITY_TRANSITIONS);
+            requestWindowFeature(Window.FEATURE_CONTENT_TRANSITIONS);
+        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_article_list);
 
@@ -151,12 +163,34 @@ public class ArticleListActivity extends AppCompatActivity implements
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    startActivity(new Intent(Intent.ACTION_VIEW,
-                            ItemsContract.Items.buildItemUri(getItemId(vh.getAdapterPosition()))));
+                    // getTransitionName() requires API 21
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        Bundle bundle = ActivityOptionsCompat
+                                .makeSceneTransitionAnimation(ArticleListActivity.this,
+                                        vh.thumbnailView,
+                                        vh.thumbnailView.getTransitionName()).toBundle();
+                        startActivity(new Intent(Intent.ACTION_VIEW,
+                                        ItemsContract.Items.buildItemUri(
+                                                getItemId(vh.getAdapterPosition()))), bundle);
+                    }
+                    else {
+                        startActivity(new Intent(Intent.ACTION_VIEW,
+                                        ItemsContract.Items.buildItemUri(
+                                                getItemId(vh.getAdapterPosition()))));
+                    }
                 }
             });
             return vh;
         }
+
+        /*
+
+        Picasso.with(mImage.getContext()).load(RADIOHEAD_ALBUM_URLS[position]).into(mImage);
+            mImage.setTransitionName(RADIOHEAD_ALBUM_NAMES[position]);
+            mImage.setTag(RADIOHEAD_ALBUM_NAMES[position]);
+            mPosition = position;
+
+         */
 
         @Override
         public void onBindViewHolder(ViewHolder holder, int position) {
@@ -179,6 +213,14 @@ public class ArticleListActivity extends AppCompatActivity implements
             holder.thumbnailView.setImageUrl(mCursor.getString(ArticleLoader.Query.THUMB_URL),
                     ImageLoaderHelper.getInstance(ArticleListActivity.this).getImageLoader());
             holder.thumbnailView.setAspectRatio(mCursor.getFloat(ArticleLoader.Query.ASPECT_RATIO));
+
+            // Based on Alex Lockwood GitHub demo code
+            // TEST: jessy (added 2015-11-12)
+            // Use image's Url as a unique transition name
+            long articleId = mCursor.getLong(ArticleLoader.Query._ID);
+            String articleIdString = String.valueOf(mCursor.getLong(ArticleLoader.Query._ID));
+            holder.thumbnailView.setTransitionName(String.valueOf(
+                    mCursor.getLong(ArticleLoader.Query._ID)));
         }
 
         @Override

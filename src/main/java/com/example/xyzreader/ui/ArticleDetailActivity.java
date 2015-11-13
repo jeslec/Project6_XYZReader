@@ -14,6 +14,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.WindowInsets;
 
 import com.example.xyzreader.R;
@@ -40,6 +41,15 @@ public class ArticleDetailActivity extends ActionBarActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        // This flag is required to get shared element transitions
+        // Must be called BEFORE super.onCreate() as mentioned here:
+        // http://stackoverflow.com/questions/23579573/calling-requestwindowfeature-after-oncreate
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            requestWindowFeature(Window.FEATURE_ACTIVITY_TRANSITIONS);
+            requestWindowFeature(Window.FEATURE_CONTENT_TRANSITIONS);
+        }
+
         super.onCreate(savedInstanceState);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().getDecorView().setSystemUiVisibility(
@@ -78,7 +88,6 @@ public class ArticleDetailActivity extends ActionBarActivity
 
         mUpButtonContainer = findViewById(R.id.up_container);
 
-        // Removed: jessy 2015-11-11
         mUpButton = findViewById(R.id.action_up);
         mUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
