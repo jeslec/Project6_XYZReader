@@ -1,1 +1,1 @@
-# XYZReader
+# XYZ Reader
